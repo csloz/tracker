@@ -1,14 +1,11 @@
 version: '3.3'
 services:
-  man:
-    build: . 
-    image: csloz/tracker
-  web:
-    build: ./tracker
+  tracker:
+    image: csloz/tracker:latest
+    container_name: tracker
+    build: .
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./tracker/:/app/tracker/
+      - .env:/app/tracker/.env
     ports:
       - 8000:8000
-    env_file:
-      - ./.env
